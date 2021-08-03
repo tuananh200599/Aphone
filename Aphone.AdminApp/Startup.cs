@@ -37,6 +37,7 @@ namespace Aphone.AdminApp
                     options.AccessDeniedPath = "/User/Forbidden/";
                 });
 
+
             services.AddControllersWithViews()
                  .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
@@ -46,11 +47,10 @@ namespace Aphone.AdminApp
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
             services.AddTransient<IUserApiClient, UserApiClient>();
             services.AddTransient<IRoleApiClient, RoleApiClient>();
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
-            //services.AddTransient<IProductApiClient, ProductApiClient>();
+            services.AddTransient<IProductApiClient, ProductApiClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

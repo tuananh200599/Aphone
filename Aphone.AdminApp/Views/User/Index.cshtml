@@ -5,6 +5,10 @@
     ViewData["Title"] = "List Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+
 @section Scripts{
     <script>
         setTimeout(function () {
@@ -13,26 +17,26 @@
     </script>
 }
 <div class="container-fluid">
-    <h1 class="mt-4">List Users</h1>
+    <h1 class="mt-4">Danh Sách Tài Khoản</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active">List Users</li>
+        <li class="breadcrumb-item"><a href="/">Trang Chủ</a></li>
+        <li class="breadcrumb-item active">Danh Sách Tài Khoản</li>
     </ol>
     <div class="card mb-12">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
-                    <a class="btn btn-success" asp-action="Create" asp-controller="User">Creat New</a>
+                    <a class="btn btn-success" asp-action="Create" asp-controller="User">Tạo Mới</a>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <form asp-action="Index" method="get">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-7">
                                 <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
                             </div>
-                            <div class="cold-md-3">
-                                <button type="submit" class="btn btn-primary">Search</button>
-                                <button type="button" onclick="window.location.href='/User/Index'" class="btn btn-dark">Reset</button>
+                            <div class="cold-md-5">
+                                <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                <button type="button" onclick="window.location.href='/User/Index'" class="btn btn-dark">Làm mới</button>
                             </div>
                         </div>
                     </form>
@@ -54,21 +58,23 @@
                     <thead>
                         <tr>
                             <th>
-                                First Name
+                                Họ
                             </th>
                             <th>
-                                Last Name
+                                Tên
                             </th>
                             <th>
-                                Phone Number
+                                Số Điện Thoại
                             </th>
                             <th>
-                                User Name
+                                Tài Khoản
                             </th>
                             <th>
                                 Email
                             </th>
-                            <th></th>
+                            <th>
+                                Tùy Chọn
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,10 +97,14 @@
                                     @Html.DisplayFor(modelItem => item.Email)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                                    @Html.ActionLink("RoleAssign", "RoleAssign", new { id = item.Id })
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) ||
+
+                                    @Html.ActionLink("Xem", "Details", new { id = item.Id }) ||
+
+
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }) ||
+
+                                    @Html.ActionLink("Phân Quyền", "RoleAssign", new { id = item.Id }) 
                                 </td>
                             </tr>
                         }

@@ -1,0 +1,126 @@
+﻿@using Aphone.ViewModel.Common;
+@model PagedResult<Aphone.ViewModel.Products.ProductVm>
+
+@{
+    ViewData["Title"] = "List Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);
+    </script>
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Danh Sách Sản Phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+    </ol>
+    <div class="card mb-12">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <a class="btn btn-success" asp-action="Create" asp-controller="Product">Tạo mới</a>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <form asp-action="Index"  method="get">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
+                            </div>
+                            <div class="col-md-4">
+                                <select name="categoryId" onchange="this.form.submit()" asp-items="@ViewBag.Categories" class="form-control">
+                                    <option> --Chọn thể loại--</option>
+                                </select>
+                            </div>
+                            <div class="cold-md-3">
+                                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                                <button type="button" onclick="window.location.href='/Product/Index'" class="btn btn-dark">Làm mới</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Tên
+                            </th>
+                            <th>
+                                Mô Tả
+                            </th>
+                            <th>
+                                Giá Nhập
+                            </th>
+                            <th>
+                               Giá Bán
+                            </th>
+                            <th>
+                                Số Lượng
+                            </th>
+                            <th>
+                                Mô Tả Chi tiết
+                            </th>
+                            <th>
+                                Tùy chọn
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var items in Model.Items)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => items.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => items.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => items.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => items.OriginalPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => items.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => items.Stock)
+                            </td>                            
+                            <td>
+                                @Html.DisplayFor(modelItem => items.SeoDescription)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", new { id = items.Id }) |
+                                @Html.ActionLink("Xem", "Details", new { id = items.Id }) |
+                                @Html.ActionLink("Xóa", "Delete", new { id = items.Id }) |
+                                @Html.ActionLink("Phân Loại", "CategoryAssign", new { id = items.Id }) |
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -18,6 +19,6 @@ namespace Aphone.ViewModel.Products
         public string SeoAlias { get; set; }
         public int CategoryId { get; set; }
 
-        //public IFormFile ThumbnailImage { get; set; }
+        public IFormFile ThumbnailImage { get; set; }
     }
 }

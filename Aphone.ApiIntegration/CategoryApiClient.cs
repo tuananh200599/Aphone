@@ -35,19 +35,19 @@ namespace Aphone.ApiIntegration
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResult<CategoryVm>> GetAll()
+        public async Task<List<CategoryVm>> GetAll()
         {
-            var categories = await GetAsync <PagedResult<CategoryVm>>($"/api/categories");
+            var categories = await GetAsync <List<CategoryVm>>($"/api/categories");
             return categories;
         }
     
 
-        public async Task<CategoryVm> GetById(int categoryId)
+        public async Task<CategoryVm> GetById(int id)
         {
-            return await GetAsync<CategoryVm>($"/api/categories/{categoryId}");
+            return await GetAsync<CategoryVm>($"/api/categories/{id}");
         }
 
-        public Task<int> Update(CategoryUpdateRequest request)
+        public Task<int> Update(int categoryId, CategoryUpdateRequest request)
         {
             throw new NotImplementedException();
         }

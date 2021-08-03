@@ -63,7 +63,7 @@ namespace Aphone.Application.Categories
             return categoryViewModel;
         }
 
-        public async Task<int> Update(CategoryUpdateRequest request)
+        public async Task<int> Update(int categoryId, CategoryUpdateRequest request)
         {
             var category = await _context.Categories.FindAsync(request.Id);
             if (category == null) throw new Exception($"Cannot find a category with id: {request.Id}");

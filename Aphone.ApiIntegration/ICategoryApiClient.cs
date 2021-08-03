@@ -9,11 +9,11 @@ namespace Aphone.ApiIntegration
 {
     public interface ICategoryApiClient
     {
-        Task<PagedResult<CategoryVm>> GetAll();
+        Task<List<CategoryVm>> GetAll();
         Task<CategoryVm> GetById( int categoryId);
         Task<int> Create(CategoryCreateRequest request);
 
-        Task<int> Update(CategoryUpdateRequest request);
+        Task<int> Update(int categoryId,CategoryUpdateRequest request);
 
         Task<int> Delete(int categoryId);
 

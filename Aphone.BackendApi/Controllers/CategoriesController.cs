@@ -59,7 +59,7 @@ namespace Aphone.BackendApi.Controllers
                 return BadRequest(ModelState);
             }
             request.Id = categoryId;
-            var affectedResult = await _categoryService.Update(request);
+            var affectedResult = await _categoryService.Update(categoryId,request);
             if (affectedResult == 0)
                 return BadRequest();
             return Ok();

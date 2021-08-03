@@ -18,6 +18,7 @@ namespace Aphone.ViewModel.Products
         public string SeoTitle { set; get; }
         public string SeoAlias { get; set; }
         public int CategoryId { get; set; }
+        public string ThumbnailImage { get; set; }
         public List<string> Categories { get; set; } = new List<string>();
     }
 }

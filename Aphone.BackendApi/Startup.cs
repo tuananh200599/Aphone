@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Aphone.Application.Categories;
+using Aphone.Application.Common;
 using Aphone.Application.Products;
 using Aphone.Application.Roles;
 using Aphone.Application.Users;
@@ -42,6 +43,7 @@ namespace Aphone.BackendApi
             services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<AphoneDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();

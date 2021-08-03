@@ -10,7 +10,7 @@ namespace Aphone.Application.Categories
     {
         Task<int> Create(CategoryCreateRequest request);
 
-        Task<int> Update(CategoryUpdateRequest request);
+        Task<int> Update( int categoryId,CategoryUpdateRequest request);
 
         Task<int> Delete(int categoryId);
 
