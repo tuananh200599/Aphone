@@ -15,8 +15,9 @@ namespace Aphone.ViewModel.Common
         }
         public class ProductSettings
         {
-            public const int NumberOfFeaturedProducts = 4;
-            public const int NumberOfLatestProducts = 6;
+            public const int NumberOfFeaturedProducts = 12;
+            public const int NumberOfLatestProducts = 12;
+            public const int NumberOfSpecialProducts = 12;
         }
     }
 }

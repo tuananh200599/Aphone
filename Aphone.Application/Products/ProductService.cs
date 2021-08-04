@@ -304,5 +304,95 @@ namespace Aphone.Application.Products
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<bool>();
         }
+
+        public async Task<List<ProductVm>> GetFeaturedProducts(int take)
+        {
+            //1. Select join
+            var query = from p in _context.Products
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId into ppi
+                        from pi in ppi.DefaultIfEmpty()
+                            //where p.CategoryId == request.CategoryId && pi.IsDefault == true
+                        select new { p, pi };
+
+            var data = await query.OrderByDescending(x => x.p.Stock).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    DatedCreate = x.p.DatedCreate,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.p.SeoAlias,
+                    SeoDescription = x.p.SeoDescription,
+                    SeoTitle = x.p.SeoTitle,
+                    Stock = x.p.Stock,
+                    CategoryId = x.p.CategoryId,
+                    ThumbnailImage = x.pi.ImagePath
+                }).ToListAsync();
+
+            return data;
+        }
+
+        public async Task<List<ProductVm>> GetLatestProducts(int take)
+        {
+            //1. Select join
+            var query = from p in _context.Products
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId into ppi
+                        from pi in ppi.DefaultIfEmpty()
+                            //where p.CategoryId == request.CategoryId && pi.IsDefault == true
+                        select new { p, pi };
+
+            var data = await query.OrderByDescending(x => x.p.DatedCreate).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    DatedCreate = x.p.DatedCreate,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.p.SeoAlias,
+                    SeoDescription = x.p.SeoDescription,
+                    SeoTitle = x.p.SeoTitle,
+                    Stock = x.p.Stock,
+                    CategoryId = x.p.CategoryId,
+                    ThumbnailImage = x.pi.ImagePath
+                }).ToListAsync();
+
+            return data;
+        }
+
+        public async Task<List<ProductVm>> GetSpecialProducts(int take)
+        {
+            //1. Select join
+            var query = from p in _context.Products
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId into ppi
+                        from pi in ppi.DefaultIfEmpty()
+                            //where p.CategoryId == request.CategoryId && pi.IsDefault == true
+                        select new { p, pi };
+
+            var data = await query.OrderByDescending(x => x.p.Price).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    DatedCreate = x.p.DatedCreate,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.p.SeoAlias,
+                    SeoDescription = x.p.SeoDescription,
+                    SeoTitle = x.p.SeoTitle,
+                    Stock = x.p.Stock,
+                    CategoryId = x.p.CategoryId,
+                    ThumbnailImage = x.pi.ImagePath
+                }).ToListAsync();
+
+            return data;
+        }
     }
 }

@@ -27,6 +27,9 @@ namespace Aphone.Application.Products
         Task<ProductImageViewModel> GetImageById(int imageId);
         Task<List<ProductImageViewModel>> GetListImages(int productId);
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
+        Task<List<ProductVm>> GetFeaturedProducts( int take);
+        Task<List<ProductVm>> GetLatestProducts( int take);
+        Task<List<ProductVm>> GetSpecialProducts(int take);
 
     }
 }

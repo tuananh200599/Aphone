@@ -142,5 +142,23 @@ namespace Aphone.ApiIntegration
             var response = await client.PutAsync($"/api/products/" + request.Id, requestContent);
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<List<ProductVm>> GetFeaturedProducts(int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/featured/{take}");
+            return data;
+        }
+
+        public async Task<List<ProductVm>> GetLatestProducts(int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/latest/{take}");
+            return data;
+        }
+
+        public async Task<List<ProductVm>> GetSpecialProducts(int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/special/{take}");
+            return data;
+        }
     }
 }
