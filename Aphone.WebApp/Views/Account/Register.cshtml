@@ -1,5 +1,102 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Aphone.ViewModel.Users.RegisterRequest
 @{
+    ViewData["Title"] = "Đăng Ký";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Đăng Ký</title>
+    <link href="~/lib/bootstrap/dist/css/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-warning">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Đăng Ký</h3></div>
+                                <div class="card-body">
+                                    <form asp-action="Register" asp-controller="Account" method="post" class="form-horizontal">
+                                        <div asp-validation-summary="All" style="color:red;list-style: none;" class="text-error">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputFname1">Họ <sup style="color:red">*</sup></label>
+                                            <div class="controls">
+                                                <input class="form-control py-4"  type="text" asp-for="FirstName" placeholder="Họ">
+                                                <span asp-validation-for="FirstName" class="text-error"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputLnam">Tên <sup style="color:red">*</sup></label>
+                                            <div class="controls">
+                                                <input class="form-control py-4"  type="text" asp-for="LastName" placeholder="Tên">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="input_email">Ngày Sinh <sup  style="color:red">*</sup></label>
+                                            <div class="controls">
+                                                <input class="form-control py-4"  type="date" asp-for="Dob" placeholder="Ngày Sinh">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="input_email">Email <sup style="color:red">*</sup></label>
+                                            <div class="controls">
+                                                <input class="form-control py-4"  type="email" asp-for="Email" placeholder="Email">
+                                                <span asp-validation-for="Email" class="text-error"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputPassword1">Tên Đăng Nhập <sup style="color:red">*</sup></label>
+                                            <div class="controls">
+                                                <input class="form-control py-4"  type="text" asp-for="UserName" placeholder="Tên Đăng Nhập">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputPassword1">Mật Khẩu <sup style="color:red">*</sup></label>
+                                            <div class="controls">
+                                                <input class="form-control py-4"  type="password" asp-for="Password" placeholder="Mật Khẩu">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputPassword1">Xác Nhận Mật Khẩu <sup style="color:red">*</sup></label>
+                                            <div class="controls">
+                                                <input class="form-control py-4"  type="password" asp-for="ConfirmPassword" placeholder="Xác Nhận Mật Khẩu">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="mobile">Số Điện Thoại </label>
+                                            <div class="controls">
+                                                <input class="form-control py-4"  type="text" asp-for="PhoneNumber" placeholder="Số Điện Thoại" />
+                                            </div>
+                                        </div>
+                                        @*<p><sup>*</sup>Trường bắt buột	</p>*@
+                                        <div class="form-group"style="text-align:center">
+                                            <div class="controls" >
+                                                <input type="hidden" name="email_create" value="1">
+                                                <input type="hidden" name="is_new_customer" value="1">
+                                                <input  class="btn btn-large btn-warning" type="submit" value="Đăng Ký" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

@@ -20,14 +20,14 @@ namespace Aphone.BackendApi.Controllers
         {
             _productService = productService;
         }
-        [HttpGet("{paging}")]
+        [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging([FromQuery] GetManageProductPagingRequest request)
         {
             var products = await _productService.GetAllPaging(request);
             return Ok(products);
         }
-        [HttpGet("id")]
-        [Authorize]
+        [HttpGet("{productId}")]
+        //[Authorize]
         public async Task<IActionResult> GetById(int productId)
         {
             var product = await _productService.GetById(productId);
@@ -54,6 +54,20 @@ namespace Aphone.BackendApi.Controllers
         public async Task<IActionResult> GetSpecialProducts(int take)
         {
             var products = await _productService.GetSpecialProducts(take);
+            return Ok(products);
+        }
+        [HttpGet("royal/{take}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetRoyalProducts(int take)
+        {
+            var products = await _productService.GetRoyalProducts(take);
+            return Ok(products);
+        }
+        [HttpGet("royaled/{take}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetRoyaledProducts(int take)
+        {
+            var products = await _productService.GetRoyaledProducts(take);
             return Ok(products);
         }
         [HttpPost]

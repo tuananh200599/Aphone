@@ -128,10 +128,10 @@ namespace Aphone.ApiIntegration
                 ByteArrayContent bytes = new ByteArrayContent(data);
                 requestContent.Add(bytes, "thumbnailImage", request.ThumbnailImage.FileName);
             }
-            requestContent.Add(new StringContent(request.Price.ToString()), "price");
-            requestContent.Add(new StringContent(request.OriginalPrice.ToString()), "originalPrice");
-            requestContent.Add(new StringContent(request.Stock.ToString()), "stock");
-            requestContent.Add(new StringContent(request.CategoryId.ToString()), "categoryId");
+            //requestContent.Add(new StringContent(request.Price.ToString()), "price");
+            //requestContent.Add(new StringContent(request.OriginalPrice.ToString()), "originalPrice");
+            //requestContent.Add(new StringContent(request.Stock.ToString()), "stock");
+            //requestContent.Add(new StringContent(request.CategoryId.ToString()), "categoryId");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Name) ? "" : request.Name.ToString()), "name");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Description) ? "" : request.Description.ToString()), "description");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Details) ? "" : request.Details.ToString()), "details");
@@ -158,6 +158,17 @@ namespace Aphone.ApiIntegration
         public async Task<List<ProductVm>> GetSpecialProducts(int take)
         {
             var data = await GetListAsync<ProductVm>($"/api/products/special/{take}");
+            return data;
+        }
+
+        public async Task<List<ProductVm>> GetRoyalProducts(int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/royal/{take}");
+            return data;
+        }
+        public async Task<List<ProductVm>> GetRoyaledProducts(int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/royaled/{take}");
             return data;
         }
     }

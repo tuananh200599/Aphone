@@ -1,47 +1,66 @@
 ﻿
 @model Aphone.ViewModel.Users.LoginRequest
 @{
-    ViewData["Title"] = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Đăng Nhập";
+    Layout = null;
 
 }
-<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-info">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body modal-spa">
-                <div class="login-grids">
-                    <div class="login">
-                        <div class="login-right">
-                            <h3>Đăng Nhập</h3>
-                            <form action="/Account/Login" method="post">
-                                <div class="sign-in">
-                                    <h4>Tên Đăng Nhập :</h4>
-                                    <input type="text" asp-for="UserName" placeholder="Tên Đăng Nhập">
-                                    <span asp-validation-for="UserName" class="text-error"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Đăng Nhập</title>
+    <link href="~/lib/bootstrap/dist/css/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-warning">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Đăng Nhập</h3></div>
+                                <div class="card-body">
+                                    <form action="/Account/Login" method="post">
+                                        <div class="form-group">
+                                            <label class="small mb-1">Tên Tài Khoản</label>
+                                            <input class="form-control py-4" asp-for="UserName" type="text" placeholder="Nhập tài khoản" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="small mb-1">Mật Khẩu</label>
+                                            <input class="form-control py-4" asp-for="Password" type="password" placeholder="Nhập mật khẩu" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" asp-for="RememberMe" type="checkbox" />
+                                                <label class="custom-control-label">Nhớ Mật Khẩu</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            <form action="/Account/Register" method="post">
+                                                <div class="controls">
+                                                    <a href="/Account/Register" class="btn btn-warning">Tạo Tài Khoản</a>
+                                                </div>
+                                            </form>
+                                            <button class="btn btn-warning" type="submit">Đăng Nhập</button>
+                                        </div>
+                                    </form>
+                                   
                                 </div>
-                                <div class="sign-in">
-                                    <h4>Mật Khẩu :</h4>
-                                    <input type="password" asp-for="Password" placeholder="Mật Khẩu">
-                                    <span asp-validation-for="Password" class="text-error"></span>
-                                    <a href="#">Quên Mật Khẩu</a>
-                                </div>
-                                <div class="single-bottom">
-                                    <input type="checkbox" id="brand" value="">
-                                    <label for="brand"><span></span>Nhớ Mật Khẩu</label>
-                                </div>
-                                <div class="sign-in">
-                                    <button type="submit" class="btn">Đăng Nhập</button>
-                                </div>
-                            </form>
+
+                            </div>
                         </div>
-                        <div class="clearfix"></div>
                     </div>
-                </div>
+                </div>      
+             </main>
             </div>
         </div>
-    </div>
-</div>
+</body>
+</html>
 

@@ -11,5 +11,7 @@ namespace Aphone.WebApp.Models
         public List<ProductVm> FeaturedProducts { get; set; }
         public List<ProductVm> LatestProducts { get; set; }
         public List<ProductVm> SpecialProducts { get; set; }
+        public List<ProductVm> RoyalProducts { get; set; }
+        public List<ProductVm> RoyaledProducts { get; set; }
     }
 }

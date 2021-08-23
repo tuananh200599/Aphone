@@ -17,6 +17,8 @@ namespace Aphone.ApiIntegration
         Task<List<ProductVm>> GetFeaturedProducts( int take);
         Task<List<ProductVm>> GetLatestProducts( int take);
         Task<List<ProductVm>> GetSpecialProducts(int take);
+        Task<List<ProductVm>> GetRoyalProducts(int take);
+        Task<List<ProductVm>> GetRoyaledProducts(int take);
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
  
     }

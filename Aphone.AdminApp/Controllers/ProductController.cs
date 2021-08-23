@@ -87,12 +87,15 @@ namespace Aphone.AdminApp.Controllers
             {
                 Id = product.Id,
                 Description = product.Description,
+                //Stock = product.Stock,
+                //Price = product.Price,
+                //OriginalPrice = product.OriginalPrice,
                 Details = product.Details,
                 Name = product.Name,
                 SeoAlias = product.SeoAlias,
                 SeoDescription = product.SeoDescription,
-                SeoTitle = product.SeoTitle,
-                CategoryId = product.CategoryId
+                SeoTitle = product.SeoTitle
+                //CategoryId = product.CategoryId
             };
             return View(editVm);
         }

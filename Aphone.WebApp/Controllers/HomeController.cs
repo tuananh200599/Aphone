@@ -29,7 +29,9 @@ namespace Aphone.WebApp.Controllers
             {
                 FeaturedProducts = await _productApiClient.GetFeaturedProducts( SystemConstants.ProductSettings.NumberOfFeaturedProducts),
                 LatestProducts = await _productApiClient.GetLatestProducts( SystemConstants.ProductSettings.NumberOfLatestProducts),
-                SpecialProducts = await _productApiClient.GetLatestProducts(SystemConstants.ProductSettings.NumberOfSpecialProducts)
+                SpecialProducts = await _productApiClient.GetSpecialProducts(SystemConstants.ProductSettings.NumberOfSpecialProducts),
+                RoyalProducts = await _productApiClient.GetRoyalProducts(SystemConstants.ProductSettings.NumberOfRoyalProducts),
+                RoyaledProducts = await _productApiClient.GetRoyaledProducts(SystemConstants.ProductSettings.NumberOfRoyaledProducts)
             };
 
             return View(viewModel);

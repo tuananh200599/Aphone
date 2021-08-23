@@ -131,6 +131,7 @@ namespace Aphone.BackendApi
 
             app.UseRouting();
 
+
             app.UseAuthorization();
             app.UseSwagger();
 
@@ -138,7 +139,6 @@ namespace Aphone.BackendApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Aphone V1");
             });
-
 
             app.UseEndpoints(endpoints =>
             {

@@ -167,20 +167,22 @@ namespace Aphone.Application.Products
         {
             var product = await _context.Products.FindAsync(productId);
             //var categories = await _context.Products.ToListAsync();
+            var image = await _context.ProductImages.Where(x => x.ProductId == productId && x.IsDefault == true).FirstOrDefaultAsync();
             var productViewModel = new ProductVm()
             {
                 Id = product.Id,
-                Name = product.Name,
+                Name = product != null ? product.Name : null,
                 DatedCreate = product.DatedCreate,
-                Description = product.Description,
-                Details = product.Details,
+                Description = product != null ? product.Description : null,
+                Details = product != null ? product.Details : null,
                 OriginalPrice = product.OriginalPrice,
                 Price = product.Price,
-                SeoAlias = product.SeoAlias,
-                SeoDescription = product.SeoDescription,
-                SeoTitle = product.SeoTitle,
+                SeoAlias = product != null ? product.SeoAlias : null,
+                SeoDescription = product != null ? product.SeoDescription : null,
+                SeoTitle = product != null ? product.SeoTitle : null,
                 Stock = product.Stock,
                 CategoryId = product.CategoryId,
+                ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
             };
             return productViewModel;
         }
@@ -220,11 +222,14 @@ namespace Aphone.Application.Products
             if (product == null) throw new Exception($"Cannot find a product with id: {request.Id}");
             product.Name = request.Name;
             product.Description = request.Description;
-            product.Price = request.Price;
-            product.OriginalPrice = request.OriginalPrice;
+            //product.Price = request.Price;
+            //product.OriginalPrice = request.OriginalPrice;
             product.Details = request.Details;
-            product.Stock = request.Stock;
-            product.CategoryId = request.CategoryId;
+            //product.Stock = request.Stock;
+            product.SeoAlias = request.SeoAlias;
+            product.SeoDescription = request.SeoDescription;
+            product.SeoTitle = request.SeoTitle;
+            //product.CategoryId = request.CategoryId;
             if (request.ThumbnailImage != null)
             {
                 var thumbnailImage = await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.ProductId == request.Id);
@@ -374,7 +379,66 @@ namespace Aphone.Application.Products
                             //where p.CategoryId == request.CategoryId && pi.IsDefault == true
                         select new { p, pi };
 
+            var data = await query.OrderByDescending(x => x.p.Name).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    DatedCreate = x.p.DatedCreate,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.p.SeoAlias,
+                    SeoDescription = x.p.SeoDescription,
+                    SeoTitle = x.p.SeoTitle,
+                    Stock = x.p.Stock,
+                    CategoryId = x.p.CategoryId,
+                    ThumbnailImage = x.pi.ImagePath
+                }).ToListAsync();
+
+            return data;
+        }
+
+        public async Task<List<ProductVm>> GetRoyalProducts(int take)
+        {
+            //1. Select join
+            var query = from p in _context.Products
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId into ppi
+                        from pi in ppi.DefaultIfEmpty()
+                            //where p.CategoryId == request.CategoryId && pi.IsDefault == true
+                        select new { p, pi };
+
             var data = await query.OrderByDescending(x => x.p.Price).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    Name = x.p.Name,
+                    DatedCreate = x.p.DatedCreate,
+                    Description = x.p.Description,
+                    Details = x.p.Details,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.p.SeoAlias,
+                    SeoDescription = x.p.SeoDescription,
+                    SeoTitle = x.p.SeoTitle,
+                    Stock = x.p.Stock,
+                    CategoryId = x.p.CategoryId,
+                    ThumbnailImage = x.pi.ImagePath
+                }).ToListAsync();
+
+            return data;
+        }
+        public async Task<List<ProductVm>> GetRoyaledProducts(int take)
+        {
+            //1. Select join
+            var query = from p in _context.Products
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId into ppi
+                        from pi in ppi.DefaultIfEmpty()
+                            //where p.CategoryId == request.CategoryId && pi.IsDefault == true
+                        select new { p, pi };
+
+            var data = await query.OrderByDescending(x => x.p.Id).Take(take)
                 .Select(x => new ProductVm()
                 {
                     Id = x.p.Id,

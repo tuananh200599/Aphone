@@ -75,6 +75,13 @@ namespace Aphone.WebApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "Product Detail",
+                    pattern: "{id}", new
+                    {
+                        controller = "Product",
+                        action = "Detail"
+                    });
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

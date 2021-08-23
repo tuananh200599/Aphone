@@ -18,6 +18,8 @@ namespace Aphone.ViewModel.Common
             public const int NumberOfFeaturedProducts = 12;
             public const int NumberOfLatestProducts = 12;
             public const int NumberOfSpecialProducts = 12;
+            public const int NumberOfRoyalProducts = 4;
+            public const int NumberOfRoyaledProducts = 1;
         }
     }
 }
