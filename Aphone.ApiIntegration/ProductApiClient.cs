@@ -102,7 +102,7 @@ namespace Aphone.ApiIntegration
             var data = await GetAsync<PagedResult<ProductVm>>(
                 $"/api/products/paging?pageIndex={request.PageIndex}" +
                 $"&pageSize={request.PageSize}" +
-                $"&keyword={request.Keyword}");
+                $"&keyword={request.Keyword}&categoryId={request.CategoryId}");
 
             return data;
         }

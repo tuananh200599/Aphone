@@ -1,5 +1,5 @@
 ﻿@using Aphone.ViewModel.Common;
-@model PagedResult<Aphone.ViewModel.Categories.CategoryVm>
+@model List<Aphone.ViewModel.Categories.CategoryVm>
 
 @{
     ViewData["Title"] = "List Categories";
@@ -13,26 +13,26 @@
     </script>
 }
 <div class="container-fluid">
-    <h1 class="mt-4">List Categories</h1>
+    <h1 class="mt-4">Danh sách thể loại</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active">List Categories</li>
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách thể loại</li>
     </ol>
     <div class="card mb-12">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
-                    <a class="btn btn-success" asp-action="Create" asp-controller="Category">Creat New</a>
+                    <a class="btn btn-success" asp-action="Create" asp-controller="Category">Tạo Mới</a>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <form asp-action="Index" method="get">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
                             </div>
-                            <div class="cold-md-3">
-                                <button type="submit" class="btn btn-primary">Search</button>
-                                <button type="button" onclick="window.location.href='/Category/Index'" class="btn btn-dark">Reset</button>
+                            <div class="cold-md-4">
+                                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                                <button type="button" onclick="window.location.href='/Category/Index'" class="btn btn-dark">Làm mới</button>
                             </div>
                         </div>
                     </form>
@@ -54,31 +54,36 @@
                     <thead>
                         <tr>
                             <th>
-                                 Name
+                                Id
                             </th>
                             <th>
-                                 Descriptions
+                                Tên thể loại
                             </th>
-                       
-                            <th></th>
+                            <th>
+                                Mô tả
+                            </th>
+
+                            <th>Tùy chọn</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Items)
+                        @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                <button class="btn btn-primary">@Html.ActionLink("Sửa", "Edit", new { id = item.Id }) </button>
+                                <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = item.Id })</button>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

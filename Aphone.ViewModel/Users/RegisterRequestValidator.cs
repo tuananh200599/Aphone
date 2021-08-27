@@ -9,30 +9,30 @@ namespace Aphone.ViewModel.Users
     {
         public RegisterRequestValidator()
         {
-            RuleFor(x => x.FirstName).NotEmpty().WithMessage("First name is required")
-                .MaximumLength(200).WithMessage("First name can not over 200 characters");
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage("Bắt buộc nhập họ")
+                .MaximumLength(200).WithMessage("Họ không quá 200 ký tự");
 
-            RuleFor(x => x.LastName).NotEmpty().WithMessage("Last name is required")
-                .MaximumLength(200).WithMessage("Last name can not over 200 characters");
+            RuleFor(x => x.LastName).NotEmpty().WithMessage("Bắt buộc nhập tên")
+                .MaximumLength(200).WithMessage("Tên không quá 200 ký tự");
 
-            RuleFor(x => x.Dob).GreaterThan(DateTime.Now.AddYears(-100)).WithMessage("Birthday cannot greater than 100 years");
+            RuleFor(x => x.Dob).GreaterThan(DateTime.Now.AddYears(-100)).WithMessage("Không thể nhập quá 100 tuổi");
 
-            RuleFor(x => x.Email).NotEmpty().WithMessage("Email is required")
+            RuleFor(x => x.Email).NotEmpty().WithMessage("Bắt buộc nhập Email")
                 .Matches(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")
                 .WithMessage("Email format not match");
 
-            RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Phone number is required");
+            RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Bắt buộc nhập SĐT");
 
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("User name is required");
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Bắt buộc nhập tên tài khoản");
 
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required")
-                .MinimumLength(6).WithMessage("Password is at least 6 characters");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Bắt buộc nhập mật khẩu")
+                .MinimumLength(6).WithMessage("Mật khẩu ít nhất 6 ký tự");
 
             RuleFor(x => x).Custom((request, context) =>
             {
                 if (request.Password != request.ConfirmPassword)
                 {
-                    context.AddFailure("Confirm password is not match");
+                    context.AddFailure("Không trùng khớp mật khẩu");
                 }
             });
         }

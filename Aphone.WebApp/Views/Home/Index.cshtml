@@ -2,7 +2,7 @@
 @using Aphone.ViewModel.Products;
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
 }
 <!-- banner -->
 <div class="banner-grid">
@@ -51,13 +51,13 @@
 <!-- //banner -->
 <!-- content-bottom -->
 <div class="content-bottom" >
-    <div class="col-md-7 content-lgrid" style="background-color:lightgoldenrodyellow">
+    <div class="col-md-7 content-lgrid">
         @foreach (var item in Model.RoyalProducts)
         {
             var url = $"/{item.Id}";
             <div class="col-sm-6 content-img-left text-center">
                 <div class="content-grid-effect slow-zoom vertical">
-                    <div class="img-box"><a href="@url"><img style="width:100%;height:400px" src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="@item.Name" class="img-responsive zoom-img"></a></div>
+                    <div class="img-box"><a href="@url"><img style="width:85%;height:400px;padding-left:100px" src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="@item.Name" class="img-responsive zoom-img"></a></div>
                     <div class="info-box">
                         <div class="info-content simpleCart_shelfItem">
                             <h4>@item.Name</h4>
@@ -77,7 +77,7 @@
         {
             var url = $"/{item.Id}";
             <div class="content-grid-effect slow-zoom vertical">
-                <div class="img-box"><a href="@url"><img style="width:100%;height:800px" src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="@item.Name" class="img-responsive zoom-img"></a></div>
+                <div class="img-box"><a href="@url"><img style="width:100%;height:800px;padding:50px" src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="@item.Name" class="img-responsive zoom-img"></a></div>
                 <div class="info-box">
                     <div class="info-content simpleCart_shelfItem">
                         <h4>@item.Name</h4>

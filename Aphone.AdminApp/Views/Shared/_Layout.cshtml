@@ -14,17 +14,17 @@
 <body class="sb-nav-fixed">
     @*@await Component.InvokeAsync("Navigation")*@
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" asp-controller="Home" asp-action="Index">Aphone</a>
+        <a class="navbar-brand" asp-controller="User" asp-action="Index">Aphone</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         @*<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
                 </div>
-            </div>
-        </form>*@
+            </form>*@
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
@@ -44,11 +44,6 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Hệ Thống</div>
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Trang chủ
-                        </a>
                         <div class="sb-sidenav-menu-heading">Quản Lý</div>
                         <a class="nav-link" asp-controller="User" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -83,10 +78,10 @@
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Aphone 2021</div>
                         @*<div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>*@
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>*@
                     </div>
                 </div>
             </footer>
@@ -102,5 +97,6 @@
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="~/assets/demo/datatables-demo.js"></script>
     @RenderSection("Scripts", required: false)
+    @RenderSection("Scriptss", required: false)
 </body>
 </html>

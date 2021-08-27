@@ -101,7 +101,7 @@ namespace Aphone.Application.Products
         public async Task<int> Delete(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
-            if (product == null) throw new AphoneException($"Cannot find a product: {productId}");
+            if (product == null) throw new AphoneException($"Không tìm thấy sản phẩm với id: {productId}");
 
             var images = _context.ProductImages.Where(i => i.ProductId == productId);
             foreach (var image in images)
@@ -122,14 +122,14 @@ namespace Aphone.Application.Products
                         from pi in ppi.DefaultIfEmpty()
                         //where p.CategoryId == request.CategoryId && pi.IsDefault == true
                         select new { p, pi };
-            //2. filter
-            //if (!string.IsNullOrEmpty(request.Keyword))
-            //    query = query.Where(x => x.p.Name.Contains(request.Keyword));
+            //2.filter
+            if (!string.IsNullOrEmpty(request.Keyword))
+                query = query.Where(x => x.p.Name.Contains(request.Keyword));
 
-            //if (request.CategoryId != null && request.CategoryId != 0)
-            //{
-            //    query = query.Where(p => p.p.CategoryId == request.CategoryId);
-            //}
+            if (request.CategoryId != null && request.CategoryId != 0)
+            {
+                query = query.Where(p => p.p.CategoryId == request.CategoryId);
+            }
             int totalRow = await _context.Products.CountAsync();
 
             var data = await query.OrderByDescending(x => x.p.Id)
@@ -283,7 +283,7 @@ namespace Aphone.Application.Products
             var user = await _context.Products.FindAsync(id);
             if (user == null)
             {
-                return new ApiErrorResult<bool>($"Product with id {id} not exist");
+                return new ApiErrorResult<bool>($"Sản phẩm với id {id} không tồn tại");
             }
 
             foreach (var category in request.Categories)
@@ -349,7 +349,7 @@ namespace Aphone.Application.Products
                             //where p.CategoryId == request.CategoryId && pi.IsDefault == true
                         select new { p, pi };
 
-            var data = await query.OrderByDescending(x => x.p.DatedCreate).Take(take)
+            var data = await query.OrderByDescending(x => x.p.Id).Take(take)
                 .Select(x => new ProductVm()
                 {
                     Id = x.p.Id,
@@ -438,7 +438,7 @@ namespace Aphone.Application.Products
                             //where p.CategoryId == request.CategoryId && pi.IsDefault == true
                         select new { p, pi };
 
-            var data = await query.OrderByDescending(x => x.p.Id).Take(take)
+            var data = await query.OrderByDescending(x => x.p.DatedCreate).Take(take)
                 .Select(x => new ProductVm()
                 {
                     Id = x.p.Id,

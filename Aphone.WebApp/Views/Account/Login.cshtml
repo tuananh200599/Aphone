@@ -31,10 +31,12 @@
                                         <div class="form-group">
                                             <label class="small mb-1">Tên Tài Khoản</label>
                                             <input class="form-control py-4" asp-for="UserName" type="text" placeholder="Nhập tài khoản" />
+                                            <span asp-validation-for="UserName" class="text-error" style="color:red"></span>
                                         </div>
                                         <div class="form-group">
                                             <label class="small mb-1">Mật Khẩu</label>
                                             <input class="form-control py-4" asp-for="Password" type="password" placeholder="Nhập mật khẩu" />
+                                            <span asp-validation-for="Password" class="text-error" style="color:red"></span>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox">

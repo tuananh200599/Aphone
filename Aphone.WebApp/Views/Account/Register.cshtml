@@ -26,57 +26,63 @@
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Đăng Ký</h3></div>
                                 <div class="card-body">
                                     <form asp-action="Register" asp-controller="Account" method="post" class="form-horizontal">
-                                        <div asp-validation-summary="All" style="color:red;list-style: none;" class="text-error">
+                                        @*<div asp-validation-summary="All" style="color:red;list-style: none;" class="text-error">
                                             <button type="button" class="close" data-dismiss="alert">×</button>
-                                        </div>
+                                        </div>*@
                                         <div class="form-group">
                                             <label class="control-label" for="inputFname1">Họ <sup style="color:red">*</sup></label>
                                             <div class="controls">
                                                 <input class="form-control py-4"  type="text" asp-for="FirstName" placeholder="Họ">
-                                                <span asp-validation-for="FirstName" class="text-error"></span>
+                                                <span asp-validation-for="FirstName" class="text-error" style="color:red"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputLnam">Tên <sup style="color:red">*</sup></label>
                                             <div class="controls">
-                                                <input class="form-control py-4"  type="text" asp-for="LastName" placeholder="Tên">
+                                                <input class="form-control py-4" type="text" asp-for="LastName" placeholder="Tên">
+                                                <span asp-validation-for="LastName" class="text-error" style="color:red"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="input_email">Ngày Sinh <sup  style="color:red">*</sup></label>
                                             <div class="controls">
-                                                <input class="form-control py-4"  type="date" asp-for="Dob" placeholder="Ngày Sinh">
+                                                <input class="form-control py-4" type="date" asp-for="Dob" placeholder="Ngày Sinh">
+                                                <span asp-validation-for="Dob" class="text-error" style="color:red"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="input_email">Email <sup style="color:red">*</sup></label>
                                             <div class="controls">
                                                 <input class="form-control py-4"  type="email" asp-for="Email" placeholder="Email">
-                                                <span asp-validation-for="Email" class="text-error"></span>
+                                                <span asp-validation-for="Email" class="text-error" style="color:red"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputPassword1">Tên Đăng Nhập <sup style="color:red">*</sup></label>
                                             <div class="controls">
-                                                <input class="form-control py-4"  type="text" asp-for="UserName" placeholder="Tên Đăng Nhập">
+                                                <input class="form-control py-4" type="text" asp-for="UserName" placeholder="Tên Đăng Nhập">
+                                                <span asp-validation-for="UserName" class="text-error" style="color:red"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputPassword1">Mật Khẩu <sup style="color:red">*</sup></label>
                                             <div class="controls">
-                                                <input class="form-control py-4"  type="password" asp-for="Password" placeholder="Mật Khẩu">
+                                                <input class="form-control py-4" type="password" asp-for="Password" placeholder="Mật Khẩu">
+                                                <span asp-validation-for="Password" class="text-error" style="color:red"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputPassword1">Xác Nhận Mật Khẩu <sup style="color:red">*</sup></label>
                                             <div class="controls">
-                                                <input class="form-control py-4"  type="password" asp-for="ConfirmPassword" placeholder="Xác Nhận Mật Khẩu">
+                                                <input class="form-control py-4" type="password" asp-for="ConfirmPassword" placeholder="Xác Nhận Mật Khẩu">
+                                                <span asp-validation-for="ConfirmPassword" class="text-error" style="color:red"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="mobile">Số Điện Thoại </label>
                                             <div class="controls">
-                                                <input class="form-control py-4"  type="text" asp-for="PhoneNumber" placeholder="Số Điện Thoại" />
+                                                <input class="form-control py-4" type="number" asp-for="PhoneNumber" placeholder="Số Điện Thoại" />
+                                                <span asp-validation-for="PhoneNumber" class="text-error" style="color:red"></span>
                                             </div>
                                         </div>
                                         @*<p><sup>*</sup>Trường bắt buột	</p>*@

@@ -77,7 +77,7 @@
                                 Số Lượng
                             </th>
                             <th>
-                                Mô Tả Chi tiết
+                                Mô Tả Tiêu Đề
                             </th>
                             <th>
                                 Tùy chọn
@@ -107,13 +107,12 @@
                                 @Html.DisplayFor(modelItem => items.Stock)
                             </td>                            
                             <td>
-                                @Html.DisplayFor(modelItem => items.SeoDescription)
+                                @Html.DisplayFor(modelItem => items.SeoTitle)
                             </td>
                             <td>
-                                @Html.ActionLink("Sửa", "Edit", new { id = items.Id }) |
-                                @Html.ActionLink("Xem", "Details", new { id = items.Id }) |
-                                @Html.ActionLink("Xóa", "Delete", new { id = items.Id }) |
-                                @Html.ActionLink("Phân Loại", "CategoryAssign", new { id = items.Id }) |
+                                <button class="btn btn-primary">@Html.ActionLink("Sửa", "Edit", new { id = items.Id }) </button>
+                                <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = items.Id }) </button>
+                                <button class="btn btn-secondary">@Html.ActionLink("Phân Loại", "CategoryAssign", new { id = items.Id })</button>
                             </td>
                         </tr>
                         }

@@ -28,7 +28,7 @@ namespace Aphone.AdminApp.Controllers
             _categoryApiClient = categoryApiClient;
 
         }
-        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string keyword,int? categoryId, int pageIndex = 1, int pageSize = 10)
         {
             //var categoryId = HttpContext.Session.GetString(SystemConstants.AppSettings.BaseAddress);
             var request = new GetManageProductPagingRequest()
@@ -36,7 +36,7 @@ namespace Aphone.AdminApp.Controllers
                 Keyword = keyword,
                 PageIndex = pageIndex,
                 PageSize = pageSize,
-                //CategoryId = categoryId
+                CategoryId = categoryId
             };
             var data = await _productApiClient.GetAllPagings(request);
             ViewBag.Keyword = keyword;
@@ -46,8 +46,8 @@ namespace Aphone.AdminApp.Controllers
             ViewBag.Categories = categories.Select(x => new SelectListItem()
             {
                 Text = x.Name,
-                Value = x.Id.ToString()
-                //Selected = categoryId.HasValue && categoryId.Value == x.Id
+                Value = x.Id.ToString(),
+                Selected = categoryId.HasValue && categoryId.Value == x.Id
 
                 });
             if (TempData["result"] != null)

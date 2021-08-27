@@ -1,6 +1,7 @@
 ﻿using Aphone.Data.EF;
 using Aphone.Data.Entities;
 using Aphone.ViewModel.Categories;
+using Aphone.ViewModel.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -57,16 +58,16 @@ namespace Aphone.Application.Categories
             var categoryViewModel = new CategoryVm()
             {
                 Id = category.Id,
-                Name = category.Name,
-                Description = category.Description, 
+                Name = category.Name != null ? category.Name : null,
+                Description = category.Description != null ? category.Description : null
             };
             return categoryViewModel;
         }
 
-        public async Task<int> Update(int categoryId, CategoryUpdateRequest request)
+        public async Task<int> Update(CategoryUpdateRequest request)
         {
             var category = await _context.Categories.FindAsync(request.Id);
-            if (category == null) throw new Exception($"Cannot find a category with id: {request.Id}");
+            if (category == null) throw new Exception($"Không tim thấy thể loại với id: {request.Id}");
             category.Name = request.Name;
             category.Description = request.Description;
             return await _context.SaveChangesAsync();

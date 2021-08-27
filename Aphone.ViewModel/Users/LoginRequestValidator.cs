@@ -9,9 +9,9 @@ namespace Aphone.ViewModel.Users
     {
         public LoginRequestValidator()
         {
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("User name is required");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required")
-                .MinimumLength(6).WithMessage("Password is at least 6 characters");
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Bắt buộc nhập tên tài khoản");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Bắt buộc nhập mật khẩu")
+                .MinimumLength(6).WithMessage("Mật khẩu ít nhất 6 ký tự");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model Aphone.ViewModel.Products.ProductUpdateRequest
 
 @{
-    ViewData["Title"] = "Update Product";
+    ViewData["Title"] = "Cập Nhật Sản Phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Scripts{
@@ -9,6 +9,21 @@
     <script>
         ClassicEditor
             .create(document.querySelector('#txt_details'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+}
+@section Scriptss{
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#txt_seoDescription'), {
                 // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
             })
             .then(editor => {
@@ -53,7 +68,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="SeoDescription" class="control-label"></label>
-                        <input asp-for="SeoDescription" class="form-control" />
+                        <textarea id="txt_seoDescription" asp-for="SeoDescription" rows="35" class="form-control"></textarea>
                         <span asp-validation-for="SeoDescription" class="text-danger"></span>
                     </div>
                     <div class="form-group">

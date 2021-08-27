@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aphone.BackendApi", "Aphone
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aphone.AdminApp", "Aphone.AdminApp\Aphone.AdminApp.csproj", "{D3D8AB62-22E0-4960-A5DD-849673C48D14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aphone.ApiIntegration", "Aphone.ApiIntegration\Aphone.ApiIntegration.csproj", "{19152DF1-4295-471C-93E2-A55A072334E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aphone.ApiIntegration", "Aphone.ApiIntegration\Aphone.ApiIntegration.csproj", "{19152DF1-4295-471C-93E2-A55A072334E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

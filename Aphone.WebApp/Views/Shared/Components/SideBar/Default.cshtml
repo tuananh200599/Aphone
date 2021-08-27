@@ -1,0 +1,34 @@
+﻿@model List<Aphone.ViewModel.Categories.CategoryVm>
+
+<div class="css-treeview">
+    <h4>Hãng Điện Thoại</h4>
+    <ul class="tree-list-pad">
+        @{
+            var parents = Model;
+        }
+        @for (int index = 0; index < parents.Count(); index++)
+        {
+            var parent = parents.ElementAt(index);
+            var children = Model.Where(x => x.Id == parent.Id);
+            if (children.Any())
+            {
+                <li>
+                    @*<a> @parent.Name</a>*@
+                    <ul>
+                        @foreach (var item in children)
+                        {
+                        <li> <a class="active"  href="/Product/Category/@item.Id" >@item.Name </a></li>
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li><a href="/@parent.Id">@parent.Name</a></li>
+            }
+
+        }
+    </ul>
+    <br />
+</div>
+
